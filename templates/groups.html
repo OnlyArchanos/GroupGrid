@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Saved groups</h2>
+<p>These groups stay saved until you generate again.</p>
+{% if groups %}
+<p><a href="{{ url_for('export_groups') }}">Download CSV</a></p>
+{% for group in groups %}
+<h3>Group {{ loop.index }} ({{ group|length }} students)</h3>
+<table>
+    <tr>
+        <th>Roll</th><th>Name</th><th>Year</th><th>Branch</th>
+        <th>Gender</th><th>Role</th>
+    </tr>
+    {% for student in group %}
+    <tr>
+        <td>{{ student.roll }}</td><td>{{ student.name }}</td>
+        <td>{{ student.year }}</td><td>{{ student.branch }}</td>
+        <td>{{ student.gender }}</td><td>{{ student.role }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endfor %}
+{% else %}
+<p>No saved groups.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #007f5f;
+    color: black;
+    margin: 0;
+}
+.page {
+    width: 94%;
+    max-width: 1050px;
+    margin: 24px auto;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #2b9348;
+}
+.header {
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #55a630;
+}
+h1, h2, h3 {
+    color: #007f5f;
+}
+a {
+    color: #007f5f;
+}
+.nav a {
+    margin: 0 10px;
+    padding: 4px 8px;
+    background-color: #edf8e9;
+    border-bottom: 2px solid #80b918;
+}
+form {
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #80b918;
+    border-left: 6px solid #80b918;
+}
+input, select, button {
+    font-family: inherit;
+    font-size: inherit;
+}
+input, select {
+    margin: 4px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    border: 1px solid #2b9348;
+}
+button {
+    padding: 8px 14px;
+    background-color: #007f5f;
+    color: white;
+    border: 1px solid #55a630;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #a7d89c;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #c8e6c9;
+}

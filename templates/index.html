@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Import students</h2>
+<p>Use the sample CSV format. Import replaces the student list.</p>
+<form action="{{ url_for('import_students') }}" method="post" enctype="multipart/form-data">
+    <label for="file">CSV file</label>
+    <input id="file" name="file" type="file" accept=".csv" required>
+    <button type="submit">Import</button>
+</form>
+{% if students %}
+<h2>Generate groups</h2>
+<form action="{{ url_for('generate_groups') }}" method="post">
+    <p>
+        <label for="mode">Group setting</label>
+        <select id="mode" name="mode">
+            <option value="size">Maximum group size</option>
+            <option value="count">Number of groups</option>
+        </select>
+        <label for="value">Value</label>
+        <input id="value" name="value" type="number" min="1" step="1" value="4" required>
+    </p>
+    <p>Choose what to mix within each group. Priority: Role &gt; Branch &gt; Year.</p>
+    <p><label><input type="checkbox" name="fields" value="role" checked> Role</label></p>
+    <p><label><input type="checkbox" name="fields" value="branch" checked> Branch</label></p>
+    <p><label><input type="checkbox" name="fields" value="year" checked> Year</label></p>
+    <p><label><input type="checkbox" name="fields" value="gender"> Gender</label></p>
+    <p><label><input type="checkbox" name="history" checked> Reduce repeated pairs</label></p>
+    <p>Groups may not be perfectly balanced.</p>
+    <button type="submit">Generate groups</button>
+</form>
+{% endif %}
+<h2>Students</h2>
+<p>Total students: {{ students|length }}</p>
+{% if students %}
+<table>
+    <tr>
+        <th>Roll</th><th>Name</th><th>Year</th><th>Branch</th>
+        <th>Gender</th><th>Role</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.roll }}</td><td>{{ student.name }}</td>
+        <td>{{ student.year }}</td><td>{{ student.branch }}</td>
+        <td>{{ student.gender }}</td><td>{{ student.role }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No students imported.</p>
+{% endif %}
+{% endblock %}

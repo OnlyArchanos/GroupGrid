@@ -1,0 +1,13 @@
+roll,name,year,branch,gender,role
+001,Asha,1,CSE,Female,Backend
+002,Ravi,2,ECE,Male,Frontend
+003,Neha,1,CSE,Female,Researcher
+004,Dev,2,ECE,Male,Designer
+005,Isha,3,ME,Female,Frontend
+006,Aman,1,CSE,Male,Backend
+007,Tara,2,ME,Female,Researcher
+008,Kiran,3,ECE,Prefer not to say,Designer
+009,Meera,1,ME,Female,Frontend
+010,Nikhil,2,CSE,Male,Backend
+011,Sana,3,ECE,Female,Researcher
+012,Arun,3,ME,Male,Designer
