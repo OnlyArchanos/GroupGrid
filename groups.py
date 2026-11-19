@@ -4,7 +4,9 @@ import random
 def group_sizes(total, mode, value):
     number = int(value)
     if mode == "size":
-        count = (total + number - 1) // number
+        count = total // number
+        if total % number != 0:
+            count = count + 1
     else:
         count = number
     sizes = []
@@ -34,7 +36,9 @@ def count_pairs(history):
         for first in range(len(rolls)):
             for second in range(first + 1, len(rolls)):
                 key = pair_key(rolls[first], rolls[second])
-                pairs[key] = pairs.get(key, 0) + 1
+                if key not in pairs:
+                    pairs[key] = 0
+                pairs[key] = pairs[key] + 1
     return pairs
 
 
@@ -54,7 +58,8 @@ def score_student(student, group, fields, pairs, use_history):
             other_penalty = other_penalty + 1
         if use_history:
             key = pair_key(student["roll"], member["roll"])
-            other_penalty = other_penalty + 2 * pairs.get(key, 0)
+            if key in pairs:
+                other_penalty = other_penalty + 2 * pairs[key]
     return (role_matches, branch_matches, year_matches, other_penalty)
 
 

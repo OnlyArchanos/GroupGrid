@@ -1,40 +1,40 @@
 import csv
-import os
 
 
 student_fields = ["roll", "name", "year", "branch", "gender", "role"]
 history_fields = ["run", "group"] + student_fields
 
 
-def load_students(folder):
+def load_students():
     students = []
-    path = os.path.join(folder, "students.csv")
-    if os.path.exists(path):
-        with open(path, encoding="utf-8-sig", newline="") as file:
+    try:
+        with open("students.csv", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 students.append(row)
+    except FileNotFoundError:
+        return []
     return students
 
 
-def read_history(folder):
+def read_history():
     rows = []
-    path = os.path.join(folder, "history.csv")
-    if os.path.exists(path):
-        with open(path, encoding="utf-8-sig", newline="") as file:
+    try:
+        with open("history.csv", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 rows.append(row)
+    except FileNotFoundError:
+        return []
     return rows
 
 
-def save_groups(folder, groups):
-    rows = read_history(folder)
+def save_groups(groups):
+    rows = read_history()
     run = 1
     if rows:
         run = int(rows[-1]["run"]) + 1
-    path = os.path.join(folder, "history.csv")
-    with open(path, "a", encoding="utf-8", newline="") as file:
+    with open("history.csv", "a", encoding="utf-8", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=history_fields)
         if not rows:
             writer.writeheader()
@@ -46,8 +46,8 @@ def save_groups(folder, groups):
                 writer.writerow(row)
 
 
-def load_groups(folder):
-    rows = read_history(folder)
+def load_groups():
+    rows = read_history()
     groups = []
     if rows:
         latest = rows[-1]["run"]
